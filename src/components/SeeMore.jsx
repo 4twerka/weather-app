@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from 'react-router-dom';
 
-import { Weather } from "./Weather";
-
 function SeeMore() {
     const location = useLocation();
     const city = location.state.city || 'New York';

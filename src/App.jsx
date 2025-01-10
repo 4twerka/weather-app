@@ -6,7 +6,6 @@ import { Weather } from './components/Weather'
 import { SeeMore } from './components/SeeMore'
 
 function App() {
-
     return (
         <Router>
             <div>

@@ -18,7 +18,7 @@ function Weather({}) {
         'Helsinki',
         'Rotterdam',
         'Washington',
-    ]
+    ];
     const citiesBottom = [
         'Wroclaw',
         'Minsk',
@@ -29,7 +29,7 @@ function Weather({}) {
         'Tbilisi',
         'Bucharest',
         'Rome',
-    ]
+    ];
 
     const fetchWeather = async (t = '') => {
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${t.trim()}&appid=2d08f5966211819f53a4848246c3b3a9&units=metric`
