@@ -53,8 +53,12 @@ function SeeMore() {
                         <p className="mb-2">Humidity: <span className="font-medium">{record.main.humidity}%</span></p>
                     </div>
                     <div className="text-center text-sm text-gray-700 mt-4">
-                        <p className="mb-1">Sunrise: <span className="font-medium">{record.sys.sunrise}</span></p>
-                        <p>Sunset: <span className="font-medium">{record.sys.sunset}</span></p>
+                        <p className="mb-1">
+                            Sunrise: <span className="font-medium">{new Date(record.sys.sunrise * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                        </p>
+                        <p>
+                            Sunset: <span className="font-medium">{new Date(record.sys.sunset * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                        </p>
                     </div>
                 </div>
                ) : null}
