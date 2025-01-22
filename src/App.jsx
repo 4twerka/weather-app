@@ -11,7 +11,7 @@ function App() {
             <div>
                 <Routes>
                     <Route path="/" element={<Weather />} />
-                    <Route path="/seemore" element={<SeeMore />} />
+                    <Route path="/cities/:city" element={<SeeMore />} />
                 </Routes>
             </div>
         </Router>

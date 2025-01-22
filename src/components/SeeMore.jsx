@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, useParams } from 'react-router-dom';
 
 function SeeMore() {
-    const location = useLocation();
-    const city = location.state.city || 'New York';
+    const params = useParams();
+    const city = params.city || 'New York';
     const [record, setRecord] = useState(null);
+    const [bgImage, setBgImage] = useState(null);
     const navigate = useNavigate();
 
     const fetchWeather = async () => {
@@ -14,9 +15,28 @@ function SeeMore() {
             const response = await fetch(url);
             const data = await response.json();
             setRecord(data);
-            console.log(data);
         } catch {
             alert('Ooops... Something went wrong');
+        }
+    }
+
+    const fetchImage = async (city) => {
+        const API_KEY = '46597004-d67d40a1e745f1a9263bb95b5'
+        const url = `https://pixabay.com/api/?key=${API_KEY}&q=city+${city}&image_type=photo&per_page=10`;
+        try {
+            const response = await fetch(url);
+
+            if (response.ok) {
+                const data = await response.json();
+                if (data.hits.length === 0) {
+                    setBgImage("https://pixabay.com/get/g6502c86db1528fd3435c774791a28b73ccbeeb84ca30802f01ece1273edd159276721e82c7ad1cf39ff8e352f77fb96f3ee221b9d82a342917885e9151692a0b_1280.jpg"
+)
+                } else {
+                    setBgImage(data.hits[0].largeImageURL)
+                }
+            } 
+        } catch(error) {
+            console.error(error);
         }
     }
 
@@ -26,9 +46,10 @@ function SeeMore() {
 
     useEffect(() => {
         fetchWeather();
+        fetchImage(params.city)
     }, [])
     return (
-        <div className="bg-second-bg h-screen flex items-center justify-center">
+        <div style={{backgroundImage: `url(${bgImage})`}} className=" h-screen flex items-center justify-center">
             <div className="backdrop-blur-lg bg-white/30 p-8 rounded-xl shadow-lg w-96">
                {record ? (
                 <div>
