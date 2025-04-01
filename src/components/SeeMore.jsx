@@ -49,7 +49,13 @@ function SeeMore() {
         fetchImage(params.city)
     }, [])
     return (
-        <div style={{backgroundImage: `url(${bgImage})`}} className="w-screen h-screen flex items-center justify-center">
+        <div style={{
+            backgroundImage: `url(${bgImage})`,
+            backgroundSize: "cover",  
+            backgroundPosition: "center", 
+            backgroundRepeat: "no-repeat", 
+          }} 
+          className="w-screen h-screen flex items-center justify-center">
             <div className="backdrop-blur-lg bg-white/30 p-8 rounded-xl shadow-lg w-96">
                {record ? (
                 <div>
